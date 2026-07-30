@@ -1,0 +1,9 @@
+{
+  "virtual_server": "VS_PAYMENT_GATEWAY_80",
+  "partition": "Common",
+  "attached_irules": [
+    "api_pool.tcl",
+    "api_pool_v2.tcl",
+    "deny-health-endpoint.tcl"
+  ]
+}
