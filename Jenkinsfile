@@ -58,7 +58,7 @@ pipeline {
                         # Push to staging partition to verify compilation engine acceptance
                         for irule in irules/*.tcl; do
                             IRULE_NAME=$(basename "$irule" .tcl)
-                            IRULE_CONTENT=$(jq -sR . "$irule")
+                            IRULE_CONTENT=$(python3 -c 'import json, sys; print(json.dumps(sys.stdin.read()))' < "$irule")
                             
                             curl -sk -u "${BIGIP_CREDS_USR}:${BIGIP_CREDS_PSW}" \
                               -X POST "https://${BIGIP_HOST}/mgmt/tm/ltm/rule" \
