@@ -40,7 +40,7 @@ pipeline {
                             python3 scripts/dependency_checker.py "${BIGIP_HOST}" "${BIGIP_USER}" "${BIGIP_PASS}" "$irule"
                         done
                     '''
-                }
+//                }
             }
         }
 
@@ -59,7 +59,7 @@ pipeline {
                               -d "{\"name\":\"${IRULE_NAME}_ci_test\", \"partition\":\"${STAGING_PART}\", \"apiAnonymous\": ${IRULE_CONTENT}}"
                         done
                     '''
-                }
+//                }
             }
         }
 
@@ -86,7 +86,7 @@ pipeline {
                         # Apply production changes via AS3 declarative payload or iControl REST
                         echo "Applying iRules to target Virtual Servers..."
                     '''
-                }
+//                }
             }
         }
     }
