@@ -14,6 +14,13 @@ pipeline {
             }
         }
 
+        stage('Setup Dependencies') {
+            steps {
+                // Installs the missing Python requests package automatically
+                sh 'python3 -m pip install --quiet requests'
+            }
+        }
+        
         stage('Static Code Analysis & Linting') {
             steps {
                 sh '''
