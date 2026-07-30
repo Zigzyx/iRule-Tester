@@ -16,8 +16,8 @@ pipeline {
 
         stage('Setup Dependencies') {
             steps {
-                // Installs the missing Python requests package automatically
-                sh 'python3 -m pip install --quiet requests'
+                // Pass --break-system-packages to bypass PEP 668 in CI containers
+                sh 'python3 -m pip install --quiet --break-system-packages requests'
             }
         }
         
