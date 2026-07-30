@@ -34,7 +34,7 @@ pipeline {
 
         stage('BIG-IP Object Dependency Audit') {
             steps {
-                withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
+                withCredentials([usernamePassword(bigip-ci-credentials: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
                     sh '''
                         for irule in irules/*.tcl; do
                             python3 scripts/dependency_checker.py "${BIGIP_HOST}" "${BIGIP_USER}" "${BIGIP_PASS}" "$irule"
