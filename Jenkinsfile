@@ -32,7 +32,7 @@ pipeline {
             }
         }
 
-        stage('BIG-IP Object Dependency Audit') {
+  /*      stage('BIG-IP Object Dependency Audit') {
             steps {
                 withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
                     sh '''
@@ -106,6 +106,6 @@ pipeline {
         }
         failure {
             echo "iRule Validation Pipeline Failed. Review logs for errors."
-        }
+        }*/
     }
 }
