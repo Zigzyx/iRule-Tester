@@ -32,9 +32,9 @@ pipeline {
             }
         }
 
-  /*      stage('BIG-IP Object Dependency Audit') {
+  //*      stage('BIG-IP Object Dependency Audit') {
             steps {
-                withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
+//                withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
                     sh '''
                         for irule in irules/*.tcl; do
                             python3 scripts/dependency_checker.py "${BIGIP_HOST}" "${BIGIP_USER}" "${BIGIP_PASS}" "$irule"
@@ -46,7 +46,7 @@ pipeline {
 
         stage('BIG-IP Sandbox Compilation (Dry-Run)') {
             steps {
-                withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
+//                withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
                     sh '''
                         # Push to staging partition to verify compilation engine acceptance
                         for irule in irules/*.tcl; do
@@ -81,7 +81,7 @@ pipeline {
 
         stage('Deploy to Production Virtual Servers') {
             steps {
-                withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
+//                withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
                     sh '''
                         # Apply production changes via AS3 declarative payload or iControl REST
                         echo "Applying iRules to target Virtual Servers..."
@@ -94,7 +94,7 @@ pipeline {
     post {
         always {
             // Clean up staging iRules from staging partition
-            withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
+//            withCredentials([usernamePassword(credentialsId: env.BIGIP_CREDS, usernameVariable: 'BIGIP_USER', passwordVariable: 'BIGIP_PASS')]) {
                 sh '''
                     for irule in irules/*.tcl; do
                         IRULE_NAME=$(basename "$irule" .tcl)
@@ -106,6 +106,6 @@ pipeline {
         }
         failure {
             echo "iRule Validation Pipeline Failed. Review logs for errors."
-        }*/
+        }//*/
     }
 }
