@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        BIGIP_HOST     = 'bigip-staging.internal.net'
+        BIGIP_HOST     = '10.1.0.145'
         BIGIP_CREDS    = credentials('bigip-ci-credentials') // Jenkins Credential ID (User/Pass)
         STAGING_PART   = 'Staging_Validation'
     }
